@@ -1,0 +1,5 @@
+[book]
+authors = ["James Carl"]
+language = "en"
+src = "src"
+title = "ROS Assistant Manual"
