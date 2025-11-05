@@ -4,7 +4,7 @@ The objective of ROS Assistant is to empower users by granting ownership over th
 
 This project is not part of the [Open Home Foundation](https://www.openhomefoundation.org/); it's a hobby project I created by myself, but was strongly inspired by projects such as [Home Assistant](https://www.home-assistant.io/) and particularly [ESPHome](https://esphome.io/). 
 
-The objective of this manual is to provide a comprehensive guide to building your own secure and trustworthy robots using ROS Assistant. Using this guide, you will learn how to manage robot projects, integrate your robot with Home Assistant, and write configuration files to impotently manage your robot's software stack. While learning these things, you will also discover other valuable features such as booting your robot off a network installer and pushing delta updates over ssh.
+The objective of this manual is to provide a comprehensive guide to building your own secure and trustworthy robots using ROS Assistant. Using this guide, you will learn how to manage robot projects, integrate your robot with Home Assistant, and write configuration files to idempotently manage your robot's software stack. While learning these things, you will also discover other valuable features such as booting your robot off a network installer and pushing delta updates over ssh.
 
 Keep in mind that while ROS Assistant is primarily focused on robots, it is not limited to robots. Any appliance capable of running Linux can be integrated with Home Assistant via ROS.
 
