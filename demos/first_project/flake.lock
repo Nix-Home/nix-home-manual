@@ -1,0 +1,238 @@
+{
+  "nodes": {
+    "crane": {
+      "locked": {
+        "lastModified": 1760924934,
+        "narHash": "sha256-tuuqY5aU7cUkR71sO2TraVKK2boYrdW3gCSXUkF4i44=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "c6b4d5308293d0d04fcfeee92705017537cad02f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_3": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1762111121,
+        "narHash": "sha256-4vhDuZ7OZaZmKKrnDpxLZZpGIJvAeMtK6FKLJYUtAdw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b3d51a0365f6695e7dd5cdf3e180604530ed33b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1744536153,
+        "narHash": "sha256-awS2zRgF4uTwrOKwwiJcByDzDOdo3Q1rPZbiHQg/N38=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "18dd725c29603f582cf1900e0d25f9f1063dbf11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "public_keys": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-GcZspS8KT1fHr06n7GN7PMnCbXc7yF/ZkDqtAG7Rzx8=",
+        "type": "file",
+        "url": "https://github.com/IamTheCarl.keys"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/IamTheCarl.keys"
+      }
+    },
+    "rass-cli": {
+      "inputs": {
+        "crane": "crane",
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": [
+          "ros_assistant",
+          "nixpkgs"
+        ],
+        "rust-overlay": [
+          "ros_assistant",
+          "rust-overlay"
+        ]
+      },
+      "locked": {
+        "path": "./packages/rass-cli",
+        "type": "path"
+      },
+      "original": {
+        "path": "./packages/rass-cli",
+        "type": "path"
+      },
+      "parent": [
+        "ros_assistant"
+      ]
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs",
+        "public_keys": "public_keys",
+        "ros_assistant": "ros_assistant"
+      }
+    },
+    "ros_assistant": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rass-cli": "rass-cli",
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1762491922,
+        "narHash": "sha256-l5qnt+lF8zW1cKWquEFGpOVXwcst6GllTRoxqdWwtE4=",
+        "owner": "IamTheCarl",
+        "repo": "ros_assistant",
+        "rev": "e247e78da6e28c336abe70bd1aeb660b02833b10",
+        "type": "github"
+      },
+      "original": {
+        "owner": "IamTheCarl",
+        "repo": "ros_assistant",
+        "type": "github"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1756175826,
+        "narHash": "sha256-cQNnntKWve+vnqo6pGGXl4NFT4dgnMKXl4+bpwLELvU=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "d137b47bde8a6783b961db81254013b454eab46a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
