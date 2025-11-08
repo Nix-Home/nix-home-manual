@@ -1,0 +1,3 @@
+Host kiosk
+    HostName kiosk # If your home network likes to add .lan to host names, you can add that here.
+    User root # Necessary if your current username is not (you absolutely should not be root right now)

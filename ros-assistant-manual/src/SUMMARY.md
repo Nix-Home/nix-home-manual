@@ -4,6 +4,8 @@
 - [Getting Started](./getting_started/introduction.md)
   - [Installation](./getting_started/installation.md)
   - [Your first project](./getting_started/first_project.md)
+  - [First deployment](./getting_started/first_deployment.md)
+  - [Pushing updates](./getting_started/pushing_updates.md)
 
 - [Cook Book](./cook_book/introduction.md)
   - [Raspberry Pi](./cook_book/raspberry_pi.md)

@@ -13,18 +13,14 @@
     
     # Used to target all major platforms when creating development shells and packages
     flake-utils.url  = "github:numtide/flake-utils";
-    
+   
+    # Public keys used for ssh login to the target device
     public_keys = {
       # Remember to replace my username with your username.
       url = "https://github.com/IamTheCarl.keys";
+    #  url = "https://gitlab.com/USERNAME.keys"; # Alternative for Gitlab users
       flake = false;
     };
-    # Alternative for Gitlab users
-    # public_keys = {
-    #   # Remember to replace the placeholder with your username.
-    #   url = "https://gitlab.com/USERNAME.keys";
-    #   flake = false;
-    # };
   };
 
   outputs = { self, nixpkgs, ros_assistant, flake-utils, public_keys }: {
@@ -40,6 +36,9 @@
         mods = ros_assistant.rass-modules;
       in [
         (mods + "/basic_boot.nix")
+        (mods + "/installer_iso.nix")
+        (mods + "/installer_netboot.nix")
+        (mods + "/auto_revert.nix")
         ({ pkgs, lib, config, ...}: {
           # This option defines the first version of NixOS you have installed on this particular machine, and is
           # used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
@@ -63,6 +62,11 @@
           # Root login is normally blocked, as it should be for a public network facing machine.
           services.openssh.settings.PermitRootLogin = "yes";
           users.extraUsers.root.openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile public_keys);
+          
+          # Install system packages.
+          environment.systemPackages = [
+            pkgs.cowsay
+          ];
         })
       ];
     };
