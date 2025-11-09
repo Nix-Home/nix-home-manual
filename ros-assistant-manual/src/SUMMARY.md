@@ -13,3 +13,6 @@
   - [Text Editor Integration with Nix](./cook_book/editor_integration.md)
   - [System Modules](./cook_book/system_modules/introduction.md)
     - [Boot](./cook_book/system_modules/boot.md)
+  - [Robots with multiple hosts](./cook_book/multi_host.md)
+  - [Rename a host](./cook_book/rename_a_host.md)
+  - [Advanced SSH configurations](./cook_book/advanced_ssh.md)
