@@ -6,6 +6,7 @@
   - [Your first project](./getting_started/first_project.md)
   - [First deployment](./getting_started/first_deployment.md)
   - [Pushing updates](./getting_started/pushing_updates.md)
+  - [Systemd services](./getting_started/systemd_services.md)
 
 - [Cook Book](./cook_book/introduction.md)
   - [Raspberry Pi](./cook_book/raspberry_pi.md)

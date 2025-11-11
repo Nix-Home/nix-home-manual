@@ -2,7 +2,8 @@
   description = "A kiosk for reading the manual";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     
     ros_assistant.url = "github:IamTheCarl/ros_assistant";
 
@@ -67,6 +68,34 @@
           environment.systemPackages = [
             pkgs.cowsay
           ];
+
+          # It's unwise to run a web browser as root.
+	  # We'll create a user for that named kiosk.
+          users.users.kiosk = {
+            isNormalUser = true;
+	    group = "kiosk";
+          };
+
+	  # And give that user its own group too.
+          users.groups.kiosk = {};
+
+          # Enable the graphical target for systemd.
+          systemd.targets.graphical.enable = true;
+
+	  # Setup the cage Wayland compositor.
+          services.cage = {
+            enable = true;
+	    user = "kiosk";
+	    program = (pkgs.writeScript "kiosk-application" ''
+	      #!${pkgs.bash}/bin/bash
+              ${pkgs.firefox}/bin/firefox --new-instance --kiosk --private-window https://example.com
+	    '');
+            environment = {
+	      # By default, cage will shutdown if no input devices can be found.
+	      # Do not do that. Keep running.
+              WLR_LIBINPUT_NO_DEVICES = "1";
+            };
+	  };
         })
       ];
     };
