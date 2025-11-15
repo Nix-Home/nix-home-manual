@@ -2,7 +2,6 @@
   description = "A kiosk for reading the manual";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     
     ros_assistant.url = "github:IamTheCarl/ros_assistant";

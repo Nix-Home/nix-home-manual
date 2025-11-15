@@ -154,6 +154,29 @@ You may find the `x86_64-linux` part of the package path odd. This is just how t
 
 Now that we have a very basic understanding of how the flake.nix file is formatted, let's adjust it to our needs.
 
+### Switch to stable NixOS
+
+By default, your flake is created with the unstable branch of NixOS. This branch has the latest and greatest software, but is in flux and not well tested. You are more likely to run into faulty software or unexpected changes. To make this tutorial more consistent, we will be switching to a stable release of NixOS.
+```patch
+{
+  description = "A very basic flake";
+
+  inputs = {
+-   nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
++   nixpkgs.url = "github:nixos/nixpkgs?ref=25.05";
+    
+  };
+
+  outputs = { self, nixpkgs }: {
+
+    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+
+    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+
+  };
+}
+```
+
 ### Add ROS Assistant as an input
 
 Let's rename our flake and then add the ROS Assistant repository as an input.
@@ -164,7 +187,7 @@ Make the following changes to your flake file.
 + description = "A kiosk for reading the manual";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=25.05";
     
 +   ros_assistant.url = "github:IamTheCarl/ros_assistant";
 +
@@ -202,7 +225,7 @@ ROS Assistant provides a command line tool with many useful features. We are spe
   description = "A kiosk for reading the manual";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=25.05";
     
     ros_assistant.url = "github:IamTheCarl/ros_assistant";
 
@@ -293,7 +316,7 @@ To create your first system, simply add the following change:
   description = "A kiosk for reading the manual";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=25.05";
     
     ros_assistant.url = "github:IamTheCarl/ros_assistant";
 
@@ -470,7 +493,7 @@ Add the following to your flake file.
 
 ```patch
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=25.05";
     
     ros_assistant.url = "github:IamTheCarl/ros_assistant";
 
