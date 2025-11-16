@@ -12,7 +12,7 @@ In this chapter we will:
 
 You have likely noticed an `ssh_config` file show up in your project directory at some point:
 ```bash
-[thecarl@the-carl-tower:~/Projects/ros_assistant_book/demos/first_project]$ ls -1
+[~/demos/first_project]$ ls -1
 flake.lock
 flake.nix
 ssh_config # This oddball.
@@ -28,7 +28,7 @@ Host kiosk
 If you have done this correctly, you can test the configuration by using rass to log in to the kiosk:
 ```bash
 [~/demos/first_project]$ rass ssh
-[*] ROS Assistant CLI v0.1.0
+[*] Nix Home CLI v0.1.0
 [*] Project root: "/home/thecarl/demos/first_project"
 [*] Project root: "/home/thecarl/demos/first_project"
 [*] Host filter: None
@@ -53,7 +53,7 @@ nixosConfigurations.kiosk = nixpkgs.lib.nixosSystem {
   modules =
   let
     # This gives us a nice shortcut for referencing modules provided by rass.
-    mods = ros_assistant.rass-modules;
+    mods = nix-home.rass-modules;
   in [
     (mods + "/basic_boot.nix")
     (mods + "/installer_iso.nix")
@@ -79,7 +79,7 @@ Add the following to your system configuration:
       modules =
       let
         # This gives us a nice shortcut for referencing modules provided by rass.
-        mods = ros_assistant.rass-modules;
+        mods = nix-home.rass-modules;
       in [
         (mods + "/basic_boot.nix")
         (mods + "/installer_iso.nix")
@@ -101,7 +101,7 @@ Run the command `rass deploy ssh` to push this change to the kiosk.
 
 ```bash
 [~/demos/first_project]$ rass deploy ssh
-[*] ROS Assistant CLI v0.1.0
+[*] Nix Home CLI v0.1.0
 [*] Project root: "/home/thecarl/demos/first_project"
 [*] Project root: "/home/thecarl/demos/first_project"
 [*] Host filter: None
@@ -109,9 +109,7 @@ Run the command `rass deploy ssh` to push this change to the kiosk.
 [*] Setting auto-revert timer using ssh.
 [*] Ssh successful.
 [*] Timer will start on system activation.
-warning: Git tree '/home/thecarl/Projects/ros_assistant_book' is dirty
 building the system configuration...
-warning: Git tree '/home/thecarl/Projects/ros_assistant_book' is dirty
 copying 14 paths...
 copying path '/nix/store/693va8pdmhhcd8vcx6cqkg5ipqc8af52-cowsay-3.8.4' to 'ssh://root@kiosk'...
 copying path '/nix/store/g1d6kc6zrpllhsi1y6gy1agy2f21a7p0-nixos-rebuild' to 'ssh://root@kiosk'...
@@ -141,7 +139,7 @@ Done. The new configuration is /nix/store/xg3y26830ham120x99a6lf6h2xqpnw2v-nixos
 Now you can log into the kiosk and verify that the cow can indeed say:
 ```bash
 [~/demos/first_project]$ rass ssh
-[*] ROS Assistant CLI v0.1.0
+[*] Nix Home CLI v0.1.0
 [*] Project root: "/home/thecarl/demos/first_project"
 [*] Project root: "/home/thecarl/demos/first_project"
 [*] Host filter: None

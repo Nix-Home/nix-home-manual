@@ -4,12 +4,12 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     
-    ros_assistant.url = "github:IamTheCarl/ros_assistant";
+    nix-home.url = "github:Nix-Home/nix-home";
 
-    # ROS Assistant also uses nixpkgs, but may be on a different version than what we're using.
-    # You don't have to do this, but you can modify ROS Assistant's inputs to match ours. It will
+    # Nix Home also uses nixpkgs, but may be on a different version than what we're using.
+    # You don't have to do this, but you can modify Nix Home's inputs to match ours. It will
     # save you some hard drive space.
-    ros_assistant.inputs.nixpkgs.follows = "nixpkgs";
+    nix-home.inputs.nixpkgs.follows = "nixpkgs";
     
     # Used to target all major platforms when creating development shells and packages
     flake-utils.url  = "github:numtide/flake-utils";
@@ -23,17 +23,17 @@
     };
   };
 
-  outputs = { self, nixpkgs, ros_assistant, flake-utils, public_keys }: {
-    # Configurations for computers we wish to manage with rass are defined here.
-    # The name of the system is how rass will know which system we are referencing.
+  outputs = { self, nixpkgs, nix-home, flake-utils, public_keys }: {
+    # Configurations for computers we wish to manage with nhome are defined here.
+    # The name of the system is how nhome will know which system we are referencing.
     nixosConfigurations.kiosk = nixpkgs.lib.nixosSystem {  
       system = "x86_64-linux";
 
       # These are modules that will be used to build the computer's software stack.
       modules =
       let
-        # This gives us a nice shortcut for referencing modules provided by rass.
-        mods = ros_assistant.rass-modules;
+        # This gives us a nice shortcut for referencing modules provided by nhome.
+        mods = nix-home.nix-modules;
       in [
         (mods + "/basic_boot.nix")
         (mods + "/installer_iso.nix")
@@ -118,8 +118,8 @@
           # Some code editors default to old sh without this.
           pkgs.bashInteractive
 
-          # Provides the ROS Assistant `rass` command.
-          ros_assistant.packages.${system}.rass-cli
+          # Provides the Nix-Home `nhome` command.
+          nix-home.packages.${system}.nhome-cli
 	];
 
 	# This is run on startup of the shell session. It is ideal for setting environment variables.

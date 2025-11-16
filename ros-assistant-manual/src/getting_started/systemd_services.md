@@ -35,7 +35,7 @@ nixosConfigurations.kiosk = nixpkgs.lib.nixosSystem {
   modules =
   let
     # This gives us a nice shortcut for referencing modules provided by rass.
-    mods = ros_assistant.rass-modules;
+    mods = nix-home.rass-modules;
   in [
     (mods + "/basic_boot.nix")
     (mods + "/installer_iso.nix")

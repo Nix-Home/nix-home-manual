@@ -2,7 +2,7 @@
 
 Make sure you have read the [introduction](./introduction.md) before continuing. That chapter explains what this project is.
 
-Creating your first project will require that you have first [installed ROS Assistant's dependencies](./installation.md).
+Creating your first project will require that you have first [installed Nix Home's dependencies](./installation.md).
 
 In this chapter we will do the following:
   * Create a development environment you can build and deploy software from
@@ -105,8 +105,8 @@ One way to avoid this issue would be to update all our software every time you u
 Nix's solution is to lock your inputs. You can do this by running `nix flake update` in your project folder. This will determine what the latest revision of the nixpkgs repository is and lock you to it.
 
 ```bash
-[~/Projects/ros_assistant_book/demos/first_project]$ nix flake update
-warning: creating lock file '"/home/thecarl/Projects/ros_assistant_book/demos/first_project/flake.lock"': 
+[~/demos/first_project]$ nix flake update
+warning: creating lock file '"/home/thecarl/demos/first_project/flake.lock"': 
 • Added input 'nixpkgs':
     'github:nixos/nixpkgs/b3d51a0365f6695e7dd5cdf3e180604530ed33b4?narHash=sha256-4vhDuZ7OZaZmKKrnDpxLZZpGIJvAeMtK6FKLJYUtAdw%3
 D' (2025-11-02)
@@ -177,9 +177,9 @@ By default, your flake is created with the unstable branch of NixOS. This branch
 }
 ```
 
-### Add ROS Assistant as an input
+### Add Nix Home as an input
 
-Let's rename our flake and then add the ROS Assistant repository as an input.
+Let's rename our flake and then add the Nix Home repository as an input.
 Make the following changes to your flake file.
 ```patch
 {
@@ -189,19 +189,19 @@ Make the following changes to your flake file.
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=25.05";
     
-+   ros_assistant.url = "github:IamTheCarl/ros_assistant";
++   nix-home.url = "github:IamTheCarl/nix-home";
 +
-+   # ROS Assistant also uses nixpkgs, but may be on a different version than what we're using.
-+   # You don't have to do this, but you can modify ROS Assistant's inputs to match ours. It will
++   # Nix Home also uses nixpkgs, but may be on a different version than what we're using.
++   # You don't have to do this, but you can modify Nix Home Assistant's inputs to match ours. It will
 +   # save you some hard drive space.
-+   ros_assistant.inputs.nixpkgs.follows = "nixpkgs";
++   nix-home.inputs.nixpkgs.follows = "nixpkgs";
 +   
 +   # Used to target all major platforms when creating development shells
 +   flake-utils.url  = "github:numtide/flake-utils";
   };
 
 - outputs = { self, nixpkgs }: {
-+ outputs = { self, nixpkgs, ros_assistant, flake-utils }: {
++ outputs = { self, nixpkgs, nix-home, flake-utils }: {
 
     packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
@@ -213,12 +213,12 @@ Make the following changes to your flake file.
 
 After that, run `nix flake update` to lock your new inputs.
 
-That was a lot more noise noise. ROS Assistant brings in quite a few other software sources, most of them being internal to itself.
-ROS Assistant is now available to your project.
+That was a lot more noise noise. Nix Home brings in quite a few other software sources, most of them being internal to itself.
+Nix Home is now available to your project.
 
 ## Create a development shell
 
-ROS Assistant provides a command line tool with many useful features. We are specifically going to need the deployment features, so let's create a shell environment with those tools available.
+Nix Home provides a command line tool with many useful features. We are specifically going to need the deployment features, so let's create a shell environment with those tools available.
 
 ```patch
 {
@@ -227,18 +227,18 @@ ROS Assistant provides a command line tool with many useful features. We are spe
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=25.05";
     
-    ros_assistant.url = "github:IamTheCarl/ros_assistant";
+    nix-home.url = "github:Nix-Home/nix-home";
 
-    # ROS Assistant also uses nixpkgs, but may be on a different version than what we're using.
-    # You don't have to do this, but you can modify ROS Assistant's inputs to match ours. It will
+    # Nix Home also uses nixpkgs, but may be on a different version than what we're using.
+    # You don't have to do this, but you can modify Nix Home's inputs to match ours. It will
     # save you some hard drive space.
-    ros_assistant.inputs.nixpkgs.follows = "nixpkgs";
+    nix-home.inputs.nixpkgs.follows = "nixpkgs";
     
     # Used to target all major platforms when creating development shells and packages
     flake-utils.url  = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, ros_assistant, flake-utils }: {
+  outputs = { self, nixpkgs, nix-home, flake-utils }: {
 
 -   packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 -
@@ -264,8 +264,8 @@ ROS Assistant provides a command line tool with many useful features. We are spe
 +    # Some code editors default to old sh without this.
 +    pkgs.bashInteractive
 +
-+    # Provides the ROS Assistant `rass` command.
-+    ros_assistant.packages.${system}.rass-cli
++    # Provides the Nix Home `rass` command.
++    nix-home.packages.${system}.rass-cli
 +  ];
 +
 +  # This is run on startup of the shell session. It is ideal for setting environment variables.
@@ -318,18 +318,18 @@ To create your first system, simply add the following change:
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=25.05";
     
-    ros_assistant.url = "github:IamTheCarl/ros_assistant";
+    nix-home.url = "github:Nix-Home/nix-home";
 
-    # ROS Assistant also uses nixpkgs, but may be on a different version than what we're using.
-    # You don't have to do this, but you can modify ROS Assistant's inputs to match ours. It will
+    # Nix Home also uses nixpkgs, but may be on a different version than what we're using.
+    # You don't have to do this, but you can modify Nix Home's inputs to match ours. It will
     # save you some hard drive space.
-    ros_assistant.inputs.nixpkgs.follows = "nixpkgs";
+    nix-home.inputs.nixpkgs.follows = "nixpkgs";
     
     # Used to target all major platforms when creating development shells and packages
     flake-utils.url  = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, ros_assistant, flake-utils }: {
+  outputs = { self, nixpkgs, nix-home, flake-utils }: {
 +   # Configurations for computers we wish to manage with rass are defined here.
 +   # The name of the system is how rass will know which system we are referencing.
 +   nixosConfigurations.kisok = nixpkgs.lib.nixosSystem {  
@@ -358,8 +358,8 @@ To create your first system, simply add the following change:
           # Some code editors default to old sh without this.
           pkgs.bashInteractive
 
-          # Provides the ROS Assistant `rass` command.
-          ros_assistant.packages.${system}.rass-cli
+          # Provides the Nix Home `rass` command.
+          nix-home.packages.${system}.rass-cli
 	];
 
 	# This is run on startup of the shell session. It is ideal for setting environment variables.
@@ -393,7 +393,7 @@ Let's start by adding the [boot module](../cook_book/system_modules/boot.md). Th
 +     modules =
 +     let
 +       # This gives us a nice shortcut for referencing modules provided by rass.
-+       mods = ros_assistant.rass-modules;
++       mods = nix-home.rass-modules;
 +     in [
 +       (mods + "/basic_boot.nix")
 +     ];
@@ -412,7 +412,7 @@ At this point, you could build an OS boot disk. The issue is that it would be a 
       modules =
       let
         # This gives us a nice shortcut for referencing modules provided by rass.
-        mods = ros_assistant.rass-modules;
+        mods = nix-home.rass-modules;
       in [
         (mods + "/basic_boot.nix")
 +       ({ pkgs, lib, config, ...}: {
@@ -447,7 +447,7 @@ Add the following to enable networking.
       modules =
       let
         # This gives us a nice shortcut for referencing modules provided by rass.
-        mods = ros_assistant.rass-modules;
+        mods = nix-home.rass-modules;
       in [
         (mods + "/basic_boot.nix")
         ({ pkgs, lib, config, ...}: {
@@ -495,12 +495,12 @@ Add the following to your flake file.
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=25.05";
     
-    ros_assistant.url = "github:IamTheCarl/ros_assistant";
+    nix-home.url = "github:Nix-Home/nix-home";
 
-    # ROS Assistant also uses nixpkgs, but may be on a different version than what we're using.
-    # You don't have to do this, but you can modify ROS Assistant's inputs to match ours. It will
+    # Nix Home also uses nixpkgs, but may be on a different version than what we're using.
+    # You don't have to do this, but you can modify Nix Home's inputs to match ours. It will
     # save you some hard drive space.
-    ros_assistant.inputs.nixpkgs.follows = "nixpkgs";
+    nix-home.inputs.nixpkgs.follows = "nixpkgs";
     
     # Used to target all major platforms when creating development shells and packages
     flake-utils.url  = "github:numtide/flake-utils";
@@ -518,8 +518,8 @@ Add the following to your flake file.
 +   # };
   };
 
-- outputs = { self, nixpkgs, ros_assistant, flake-utils }: {
-+ outputs = { self, nixpkgs, ros_assistant, flake-utils, public_keys }: {
+- outputs = { self, nixpkgs, nix-home, flake-utils }: {
++ outputs = { self, nixpkgs, nix-home, flake-utils, public_keys }: {
 ```
 
 Your public keys are now available to Nix as a file downloaded off the internet. The keen eyed may find this odd though. This file is not stored in your git repository, so how are we supposed to guarantee the same software stack is produced from the current git revision, even after our public keys have been updated on Github/Gitlab?
@@ -556,7 +556,7 @@ Add the following to your system configuration to configure ssh.
       modules =
       let
         # This gives us a nice shortcut for referencing modules provided by rass.
-        mods = ros_assistant.rass-modules;
+        mods = nix-home.rass-modules;
       in [
         (mods + "/basic_boot.nix")
         ({ pkgs, lib, config, ...}: {
@@ -598,13 +598,11 @@ Let's build a boot disk image for our target system.
 [~/demos/first_project]$ nix develop
 
 [~/demos/first_project]$ rass deploy disk
-[*] ROS Assistant CLI v0.1.0
+[*] Nix Home CLI v0.1.0
 [*] Building boot disk images.
-[*] Project root: "/home/thecarl/Projects/ros_assistant_book/demos/first_project"
-[*] Project root: "/home/thecarl/Projects/ros_assistant_book/demos/first_project"
+[*] Project root: "/home/thecarl/demos/first_project"
+[*] Project root: "/home/thecarl/demos/first_project"
 [*] Host filter: None
-[W] `nix eval` had stderr output: warning: Git tree '/home/thecarl/Projects/ros_assistant_book' is dirty
- |  
 [*] Building 'generic-x86'
 warning: Git tree '/home/thecarl/demos/first_project' is dirty
 [*] Build successful.

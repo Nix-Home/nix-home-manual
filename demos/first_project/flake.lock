@@ -2,11 +2,11 @@
   "nodes": {
     "crane": {
       "locked": {
-        "lastModified": 1762538466,
-        "narHash": "sha256-8zrIPl6J+wLm9MH5ksHcW7BUHo7jSNOu0/hA0ohOOaM=",
+        "lastModified": 1760924934,
+        "narHash": "sha256-tuuqY5aU7cUkR71sO2TraVKK2boYrdW3gCSXUkF4i44=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "0cea393fffb39575c46b7a0318386467272182fe",
+        "rev": "c6b4d5308293d0d04fcfeee92705017537cad02f",
         "type": "github"
       },
       "original": {
@@ -69,23 +69,55 @@
         "type": "github"
       }
     },
-    "nixpkgs": {
+    "nhome-cli": {
+      "inputs": {
+        "crane": "crane",
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": [
+          "nix-home",
+          "nixpkgs"
+        ],
+        "rust-overlay": [
+          "nix-home",
+          "rust-overlay"
+        ]
+      },
       "locked": {
-        "lastModified": 1763049705,
-        "narHash": "sha256-A5LS0AJZ1yDPTa2fHxufZN++n8MCmtgrJDtxFxrH4S8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "3acb677ea67d4c6218f33de0db0955f116b7588c",
+        "path": "./packages/nhome-cli",
+        "type": "path"
+      },
+      "original": {
+        "path": "./packages/nhome-cli",
+        "type": "path"
+      },
+      "parent": [
+        "nix-home"
+      ]
+    },
+    "nix-home": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nhome-cli": "nhome-cli",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1763608387,
+        "narHash": "sha256-R/6LQitLHaaSFTa0S+ZI+wVhWxoDSnQXM7d3lqOoIZE=",
+        "owner": "Nix-Home",
+        "repo": "nix-home",
+        "rev": "21fab8e3a61a4fda3b7fe1d015be762a4eb00245",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.05",
-        "repo": "nixpkgs",
+        "owner": "Nix-Home",
+        "repo": "nix-home",
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs": {
       "locked": {
         "lastModified": 1744536153,
         "narHash": "sha256-awS2zRgF4uTwrOKwwiJcByDzDOdo3Q1rPZbiHQg/N38=",
@@ -97,6 +129,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1763334038,
+        "narHash": "sha256-LBVOyaH6NFzQ3X/c6vfMZ9k4SV2ofhpxeL9YnhHNJQQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4c8cdd5b1a630e8f72c9dd9bf582b1afb3127d2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -113,65 +161,17 @@
         "url": "https://github.com/IamTheCarl.keys"
       }
     },
-    "rass-cli": {
-      "inputs": {
-        "crane": "crane",
-        "flake-utils": "flake-utils_3",
-        "nixpkgs": [
-          "ros_assistant",
-          "nixpkgs"
-        ],
-        "rust-overlay": [
-          "ros_assistant",
-          "rust-overlay"
-        ]
-      },
-      "locked": {
-        "path": "./packages/rass-cli",
-        "type": "path"
-      },
-      "original": {
-        "path": "./packages/rass-cli",
-        "type": "path"
-      },
-      "parent": [
-        "ros_assistant"
-      ]
-    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs",
-        "public_keys": "public_keys",
-        "ros_assistant": "ros_assistant"
-      }
-    },
-    "ros_assistant": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "rass-cli": "rass-cli",
-        "rust-overlay": "rust-overlay"
-      },
-      "locked": {
-        "lastModified": 1762628650,
-        "narHash": "sha256-XhwAuFzrxmDY6qVy3mwub7VjXZtOBL9ZW9RzGgSxeDo=",
-        "owner": "IamTheCarl",
-        "repo": "ros_assistant",
-        "rev": "c173b8e2be6abf615013f250e5d6dd75f4cefaa3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "IamTheCarl",
-        "repo": "ros_assistant",
-        "type": "github"
+        "nix-home": "nix-home",
+        "nixpkgs": "nixpkgs_2",
+        "public_keys": "public_keys"
       }
     },
     "rust-overlay": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "lastModified": 1756175826,

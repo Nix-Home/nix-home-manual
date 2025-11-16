@@ -1,6 +1,6 @@
 # Getting Started
 
-This tutorial will start you on your first ROS Assistant project. This project will teach you the workflow for setting up a ROS Assistant appliance and pushing updates to it over ssh. The appliance you will create is a simple kiosk that displays this very manual. 
+This tutorial will start you on your first Nix Home project. This project will teach you the workflow for setting up a Nix Home appliance and pushing updates to it over ssh. The appliance you will create is a simple kiosk that displays this very manual. 
 The kiosk will have the following features:
 * Display a locally stored web page
 * Permit the user to interact with the web page using a keyboard and mouse

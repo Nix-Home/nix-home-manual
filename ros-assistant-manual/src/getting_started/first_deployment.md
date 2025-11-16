@@ -31,7 +31,7 @@ nixosConfigurations.kiosk = nixpkgs.lib.nixosSystem {
   modules =
   let
     # This gives us a nice shortcut for referencing modules provided by rass.
-    mods = ros_assistant.rass-modules;
+    mods = nix-home.rass-modules;
   in [
     (mods + "/basic_boot.nix")
     ({ pkgs, lib, config, ...}: {
@@ -62,7 +62,7 @@ nixosConfigurations.kiosk = nixpkgs.lib.nixosSystem {
   modules =
   let
     # This gives us a nice shortcut for referencing modules provided by rass.
-    mods = ros_assistant.rass-modules;
+    mods = nix-home.rass-modules;
   in [
     (mods + "/basic_boot.nix")
 +   (mods + "/installer_netboot.nix")
@@ -81,7 +81,7 @@ Rass will typically need super user permissions to open a UDP socket on port 67.
 
 ```bash
 [~/demos/first_project]$ rass deploy install-netboot
-[*] ROS Assistant CLI v0.1.0
+[*] Nix Home CLI v0.1.0
 [*] Project root: "/home/thecarl/demos/first_project"
 [*] Project root: "/home/thecarl/demos/first_project"
 [*] Host filter: None
@@ -140,7 +140,7 @@ nixosConfigurations.kiosk = nixpkgs.lib.nixosSystem {
   modules =
   let
     # This gives us a nice shortcut for referencing modules provided by rass.
-    mods = ros_assistant.rass-modules;
+    mods = nix-home.rass-modules;
   in [
     (mods + "/basic_boot.nix")
 +   (mods + "/installer_iso.nix")
@@ -156,7 +156,7 @@ nixosConfigurations.kiosk = nixpkgs.lib.nixosSystem {
 At this point, producing the ISO image is as simple as running the command `rass deploy install-iso`:
 ```bash
 [~/demos/first_project]$ rass deploy install-iso
-[*] ROS Assistant CLI v0.1.0
+[*] Nix Home CLI v0.1.0
 [*] Building installer ISO images.
 [*] Project root: "/home/thecarl/demos/first_project"
 [*] Project root: "/home/thecarl/demos/first_project"
@@ -164,7 +164,6 @@ At this point, producing the ISO image is as simple as running the command `rass
 [W] `nix eval` had stderr output: warning: Git tree '/home/thecarl/demos/first_project' is dirty
  |  
 [*] Building 'kiosk'
-warning: Git tree '/home/thecarl/Projects/ros_assistant_book' is dirty
 [*] Build successful.
 
 [~/demos/first_project]$ ls -lh result/kiosk/iso/nixos-minimal-25.11pr
