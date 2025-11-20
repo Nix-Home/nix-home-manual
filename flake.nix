@@ -16,15 +16,25 @@
     in
     {
       devShells.default =
-      with pkgs; mkShell {
-        buildInputs = [
-          bashInteractive
-          mdbook
-        ];
+        with pkgs; mkShell {
+          buildInputs = [
+            bashInteractive
+            mdbook
+          ];
 
-        shellHook = ''
-          export SHELL=${pkgs.bashInteractive}/bin/bash
-        '';
+          shellHook = ''
+            export SHELL=${pkgs.bashInteractive}/bin/bash
+          '';
+        };
+
+      packages.default = pkgs.stdenv.mkDerivation {
+        name = "nix-home-manual";
+        src = ./ros-assistant-manual;
+           
+	buildPhase = ''
+          mkdir -p $out
+          ${pkgs.mdbook}/bin/mdbook build $src --dest-dir $out
+	'';
       };
    });
 }
